@@ -1,0 +1,80 @@
+<html>
+<head>
+    <meta name="renderer" content="webkit" />
+    <title>25人英雄敖龙岛定星位练习</title>
+    <link href="style.css" type="text/css" rel="stylesheet" />
+    <link href="https://cdn.bootcss.com/layer/2.3/skin/layer.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/layer/2.3/layer.js"></script>
+    <script src="scripts.js"></script>
+    <script type="text/javascript">document.write(unescape("%3Cspan id='cnzz_stat_icon_1279266027'%3E%3C/span%3E%3Cscript src='https://s4.cnzz.com/z_stat.php%3Fid%3D1279266027' type='text/javascript'%3E%3C/script%3E"));</script>
+</head>
+<body>
+    <div class="toolbar">
+        <div id="div_type">
+            <input type="button" value="随机练习" id="btnPractise" />
+            <input type="button" value="单练这个" id="btnPractiseSingle" style="display:none" />
+            <input type="button" value="绘  制" id="btnDraw" style="display:none" />
+        </div>
+        <div id="div_pratise" class="hide">
+            <input type="button" value="返  回" id="btnPratiseCancel" />
+        </div>
+        <div id="div_draw" class="hide">
+            <input type="button" value="下一个" id="btnNext" />
+            <input type="button" value="重  置" id="btnClear" />
+            <input type="button" value="完  成" id="btnCompleted" />
+            <input type="button" value="返  回" id="btnCancel" />
+        </div>
+    </div>
+
+
+    <canvas id="mouse" style="position:absolute; top:0px;left:0px;z-index:3"></canvas>
+    <canvas id="main" style="position:absolute; top:0px;left:0px;z-index:2"></canvas>
+    <canvas id="bg" style="position:absolute; top:0px;left:0px;z-index:1"></canvas>
+    <div class="imgBar" id="smallMap">
+    </div>
+    <div class="imgBar" id="demoStar" style="display:none;">
+    </div>
+    <span class="pratise_times">
+        <span name="count"></span><br />
+        <span name="times"></span>
+    </span>
+    <template id="tmpAlert">
+        <div class="form">
+            <div class="row">
+                <span class="label">星宿名称</span>
+                <span class="input">
+                    <select style="width:70px;height:30px" name="starName" id="starName">
+                        <optgroup label="青龙">
+                            <option>房</option>
+                            <option>亢</option>
+                            <option>氏</option>
+                        </optgroup>
+                        <optgroup label="白虎">
+                            <option>毕</option>
+                            <option>参</option>
+                            <option>昴</option>
+                        </optgroup>
+                        <optgroup label="朱雀">
+                            <option>井</option>
+                            <option>张</option>
+                            <option>轸</option>
+                        </optgroup>
+                        <optgroup label="玄武">
+                            <option>斗</option>
+                            <option>牛</option>
+                            <option>室</option>
+                        </optgroup>
+                    </select>
+                </span>
+            </div>
+            <div class="row opt">
+                <input type="button" value="确  定" id="btnAlertOK" />
+                <input type="button" value="取  消" id="btnAlertClose" />
+            </div>
+        </div>
+    </template>
+    <img src="bg/single.png" style="width:60px; height:75px;z-index:0;position: absolute; top: 500px; " id="star" />
+    <span class="copyright">Copy Right 肥牛土豆@飞龙在天</span>
+</body>
+</html>

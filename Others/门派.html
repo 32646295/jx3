@@ -1,0 +1,177 @@
+﻿<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="layer.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="layer.min.css" />
+    <script type="text/javascript">
+        
+        function randomNum(minNum, maxNum) {
+            switch (arguments.length) {
+                case 1:
+                    return parseInt(Math.random() * minNum + 1, 10);
+                break;
+                case 2:
+                    return parseInt(Math.random() * ( maxNum - minNum + 1 ) + minNum, 10);
+                break;
+                default:
+                    return 0;
+                break;
+            }
+        } 
+        function take(data, number, include){
+            var arr = [];
+            var result = [];
+            result.push(data[include]);
+            while(arr.length < number){
+                var nA = randomNum(0, data.length - 1);
+                if(arr.indexOf(nA) >= 0) continue;
+
+                arr.push(nA);
+            }
+            for(var i = 0; i < number; i++){
+                result.push(data[arr[i]]);
+            }
+            result.sort();
+            return result;
+        }
+
+        function initResult(data, answer) {
+            $(".result").html("");
+            $(".true").removeClass("true");
+            var departments = [];
+            var types = [];
+            var details = [];
+            var categories = [];
+            for (var i = 0; i < data.length; i++) {
+                if (departments.indexOf(data[i].department) < 0) {
+                    departments.push(data[i].department);
+                }
+                if (types.indexOf(data[i].type) < 0) {
+                    types.push(data[i].type);
+                }
+                if (details.indexOf(data[i].details) < 0) {
+                    details.push(data[i].details);
+                }
+                if (categories.indexOf(data[i].category) < 0) {
+                    categories.push(data[i].category);
+                }
+            }
+            //初始化图片
+            $(".img img").attr("src","../imgs/门派icons/" + answer.name + ".png");
+            
+            //初始化门派            
+            var elDep = $(".department .result");
+            take(departments, 4, departments.indexOf(answer.department)).forEach(function(a) {
+                var add = "";
+                if(answer.department == a) add = "answer='true'";
+                elDep.append("<input type='radio' name='deps' id='deps_" + a + "' value='" + a + "' " + add + " /><label for='deps_" + a + "'>" + a + "</label>");
+            });
+
+
+            //初始化内外功
+            var elCat = $(".category .result");
+            categories.forEach(function(a){
+                var add = "";
+                if(answer.category == a) add = "answer='true'";
+                elCat.append("<input type='radio' name='cats' id='cats_" + a + "' value='" + a + "' " + add + " /><label for='cats_" + a + "'>" + a + "</label>");
+            });
+
+            //初始化工作类型
+            var elTyp = $(".type .result");
+            types.forEach(function(a){
+                var add = "";
+                if(answer.type == a) add = "answer='true'";
+                elTyp.append("<input type='radio' name='typs' id='typs_" + a + "' value='" + a + "' " + add + " /><label for='typs_" + a + "'>" + a + "</label>");
+            });
+
+            $("input").change(function () {
+                var department = $('input[name=deps]:radio:checked').val();
+                var category = $('input[name=cats]:radio:checked').val();
+                var type = $('input[name=typs]:radio:checked').val();
+
+                var department_true = $('input[name=deps][answer=true]').val();
+                var category_true = $('input[name=cats][answer=true]').val();
+                var type_true = $('input[name=typs][answer=true]').val();
+                if (department != null && department != "" && category != null && category != "" && type != null && type != "") {
+                    if (department == department_true && category == category_true && type == type_true)
+                    {
+                        alert("yes");
+                        next();
+                    }
+                    else {
+                        $('input[name=deps][answer=true]').next().addClass("true");
+                        $('input[name=cats][answer=true]').next().addClass("true");
+                        $('input[name=typs][answer=true]').next().addClass("true");
+                        alert("no");
+                        setTimeout(function () {
+                            next();
+                        }, 5000);
+                    }
+                }
+            });
+        }
+
+        var data;
+        $.getJSON("data.json", function (result) {
+            data = result;
+            next();
+        });
+
+        function next() {
+            var n = randomNum(0, data.length - 1);
+            var question = data[n];
+            initResult(data, question);
+        }
+    </script>
+    <style>
+        .img img {
+            width:96px;
+            height:96px;
+        }
+        .question {
+            padding-bottom:20px;
+        }
+            .question .title {
+                font-weight:bolder;
+            }
+            .question .result {
+                display:inline-block;
+            }
+            .question .true {
+                color:red;
+                font-weight:bolder;
+            }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div class="img">
+            <img src="" />
+        </div>
+
+        <div>
+            <form name="form" id="form1">
+                <div class="question department">
+                    <span class="title">上图是哪个门派：</span>
+                    <div class="result"></div>
+                </div>
+                <div class="question type">
+                    <span class="title">上图是工作类型是：</span>
+                    <div class="result"></div>
+                </div>
+                <div class="question category">
+                    <span class="title">上图是：</span>
+                    <div class="result"></div>
+                </div>
+                <!--<div class="details">
+                    <span>上图是需求的装备属性是：</span>
+                    <div class="result"></div>
+                </div>-->
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

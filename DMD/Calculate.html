@@ -1,0 +1,228 @@
+<html>
+	<head>
+		<style type="text/css">
+			#numbers{
+				height: 100px;
+				padding-top: 50px;
+			}
+			.numbers span {
+				padding: 10px;
+				font-size: 28px;
+				border:1px solid black;
+				margin-right: 10px;
+				display: inline-block;
+			}
+			.numbers span:hover{
+				background-color:burlywood;
+				cursor: pointer;
+			}
+			.result span{
+				padding: 5px;
+				font-size: 28px;
+				margin-right: 5px;
+				display: inline-block;
+			}
+			.change{
+				background-color:chartreuse;
+			}
+			button{
+				font-size: 20px;
+				font-weight: bolder;
+				width: 120px;
+				height: 50px;
+				padding: 5px 5px;
+			}
+		</style>
+	<head>
+	<body>
+		<div style="text-align: center;">
+			<div id="numbers" class="numbers"></div>
+			<div id="press" class="result"></div>
+			<div id="sugesst" class="result"></div>
+			<button id="btnNew" onclick="startNew()">练习</button>
+			<button id="btnNew" onclick="pressArray=[];inputNumbers();">输入</button>
+		</div>
+		<script type="text/javascript">
+			function randomNum(minNum, maxNum) {
+				switch (arguments.length) {
+					case 1:
+						return parseInt(Math.random() * minNum + 1, 10);
+					break;
+					case 2:
+						return parseInt(Math.random() * ( maxNum - minNum + 1 ) + minNum, 10);
+					break;
+					default:
+						return 0;
+					break;
+				}
+			} 
+			
+			var arrays = [];
+			function startNew(){
+				pressArray=[];
+				makeNew();
+				var steps = findSortPath(arrays);
+				var elNumbers = window.document.getElementById("sugesst");
+				elNumbers.innerHTML="<span>推荐顺序：</span>";
+				for(var i = 0; i < steps.length; i++){
+					var elSpanNew = window.document.createElement("span");
+					elSpanNew.innerText = steps[i];
+					elNumbers.appendChild(elSpanNew);
+				}
+			}
+			function makeNew(args){
+				if(args == null){
+					arrays = [];
+					while(arrays.length < 6){
+						var n = randomNum(1, 6);
+						if(arrays.indexOf(n) < 0) {
+							arrays.push(n);
+						}
+					}
+				}
+				else{
+					arrays = args;
+				}
+
+				var elpress = window.document.getElementById("press");
+				elpress.innerHTML="";
+				var elNumbers = window.document.getElementById("numbers");
+				elNumbers.innerHTML="";
+				for(var i = 0; i < arrays.length; i++){
+					var elSpanNew = window.document.createElement("span");
+					elSpanNew.innerText = arrays[i];
+					elNumbers.appendChild(elSpanNew);
+					elSpanNew.onclick = exchange;
+				}
+			}
+			
+			var pressArray=[];
+			var exchangeArray =[];
+			function inputNumbers(){
+				var numbers = prompt("请输入数字顺序");
+				var tmpnumbers = numbers.split('');
+				var sortnumbers = [];
+				numbers = [];
+				tmpnumbers.forEach(item => {  
+					numbers.push(+item);
+					sortnumbers.push(+item);
+				}); 
+				sortnumbers.sort();
+				if(sortnumbers.length == 6 && sortnumbers[0] == 1 && sortnumbers[5] == 6 && sum(sortnumbers) == 21){
+					makeNew(numbers);
+					var steps = findSortPath(numbers);
+					var elNumbers = window.document.getElementById("sugesst");
+					elNumbers.innerHTML="<span>推荐顺序：</span>";
+					for(var i = 0; i < steps.length; i++){
+						var elSpanNew = window.document.createElement("span");
+						elSpanNew.innerText = steps[i];
+						elNumbers.appendChild(elSpanNew);
+					}
+				}
+				else{
+					alert("请输入正确的数字组合。");
+				}
+			}
+			function exchange(a,b){		
+				this.className = "change";		
+				var nN = parseInt(this.innerText);
+				exchangeArray.push(arrays.indexOf(nN));
+				exchangeArray.sort();
+				if(exchangeArray.length == 2){
+					if(exchangeArray[0] == 1 && exchangeArray[1] == 6){
+						pressArray.push(6);
+					}
+					else{
+						pressArray.push(exchangeArray[0]+1);
+					}
+					var t = exchangeArray[0] - exchangeArray[1];
+					if(t == 1 || t == -1 || t == 5 || t == -5){
+						var nT = arrays[exchangeArray[0]];
+						arrays[exchangeArray[0]] = arrays[exchangeArray[1]];
+						arrays[exchangeArray[1]] = nT;
+						makeNew(arrays);
+						exchangeArray = [];
+					}
+
+					var elNumbers = window.document.getElementById("press");
+					elNumbers.innerHTML="<span>按钮顺序：</span>";
+					for(var i = 0; i < pressArray.length; i++){
+						var elSpanNew = window.document.createElement("span");
+						elSpanNew.innerText = pressArray[i];
+						elNumbers.appendChild(elSpanNew);
+					}
+				}
+			}
+			function sum(arr) {
+				return eval(arr.join("+"));
+			};
+
+			function findSortPath(args){
+				var newArgs = [];
+				for(var i = 0; i < args.length; i++){
+					newArgs.push(args[i]);
+				}
+				var allIndex = [];
+				for(var i = 1; i <= newArgs.length; i++){
+					for(var n = 0; n <= newArgs.length; n++){
+						if(i == newArgs[n]){
+							var iIndex = newArgs.indexOf(i);
+							var dis = iIndex - i+1;
+							if((iIndex == 5 && i == 1) || (iIndex == 1 && i == 5)){
+								dis = 1;
+							}
+							
+							allIndex.push({
+								number: i,
+								index: iIndex,
+								distinct: dis
+							});
+							break;
+						}
+					}
+				}
+				var moveStep = [];
+				//if(allIndex[0].distinct > allIndex[allIndex.length - 1].distinct){
+					for(var i = 0; i < newArgs.length; i++){
+						var index = newArgs.indexOf(i+1);
+						if(i == index) continue;
+						if(i == 0 && index == 5){
+							moveStep.push(6);
+							moveArray(newArgs,index,i);
+						}
+						else{
+							for(var n = index; n >= i+1; n--){
+								moveStep.push(n);
+							}
+							moveArray(newArgs,index,i);
+						}
+					}
+				/*}
+				else{
+					for(var i = args.length - 1; i >= 0 ; i--){
+						
+					}
+				}*/
+				
+				return moveStep;
+			}
+
+			function moveArray(arr,index,tindex){
+				if(index == 5 && tindex == 0){
+					var tmp = arr[index];
+					arr[index] = arr[tindex];
+					arr[tindex] = tmp;
+				}
+				else if(index>tindex){
+					arr.splice(tindex,0,arr[index]);
+					arr.splice(index+1,1)
+				}
+				else{
+					arr.splice(tindex+1,0,arr[index]);
+					arr.splice(index,1)
+				}
+			}
+			startNew();
+		</script>
+	</body>
+</html>

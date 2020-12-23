@@ -1,0 +1,32 @@
+﻿.toolbar {
+    position:fixed;
+    z-index:999999;
+    top:50px;
+    left:50px;
+
+}
+    .toolbar button {
+        margin-left:20px;
+        width:100px;
+        height:30px;
+    }
+    #btnChange {
+        display:none;
+    }
+.ready {
+    position:fixed;
+    top:50%;
+    left:50%;
+    z-index:999999;
+    font-size:60px;
+    display:none;
+}
+.time {
+    position:fixed;
+    top:20px;
+    left:90%;
+    z-index:999999;
+    font-size:60px;
+    display:none;
+    color:white;
+}

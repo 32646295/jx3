@@ -1,0 +1,112 @@
+.toolbar {
+    position: absolute;
+    left: 50px;
+    top: 10px;
+    z-index: 4;
+}
+
+    .toolbar div {
+        margin-top: 15px;
+    }
+
+    .toolbar input {
+        margin-right: 10px;
+        width: 70px;
+        height: 30px;
+    }
+.pratise_times {
+    position:absolute;
+    z-index:5;
+    font-size:50px;
+    font-weight:bolder;
+    top:20px;
+    right:80px;
+    color:white;
+}
+.imgBar {
+    display: block;
+    position: absolute;
+    left: 50px;
+    bottom: 50px;
+    z-index: 5;
+    width: 118px;
+    height: 64px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.hide {
+    display:none;
+}
+
+    .imgBar img {
+        width: 116px;
+        height: 62px;
+    }
+
+
+    .imgBar .img_container {
+        position: relative;
+        display: inline-block;
+        border: 1px solid white;        
+        cursor:pointer;
+    }
+    .imgBar .img_container:hover {
+        border: 1px solid yellow;
+    }
+    .imgBar .img_name {
+        position: absolute;
+        text-align: center;
+        bottom: 4px;
+        left: 28px;
+        color: white;
+        cursor:pointer;
+    }
+
+    .imgBar .img_row {
+        white-space: nowrap;
+    }
+
+.form {
+    padding: 15px 15px 5px 15px;
+}
+
+    .form .row {
+        height: 55px;
+    }
+
+    .form .label {
+        font-weight: bolder;
+        padding-right: 10px;
+    }
+
+    .form .input {
+    }
+
+        .form .input select {
+            padding: 1px 5px 1px 5px;
+        }
+
+    .form .opt {
+        border-top: 1px gray solid;
+        text-align: right;
+        padding-top: 15px;
+    }
+
+        .form .opt input {
+            padding-right: 15px;
+            text-align: center;
+        }
+
+.thumbnails {
+    width: 406px;
+    height: 217px;
+    cursor: pointer;
+}
+.copyright {
+    position:absolute;
+    right:10px;
+    bottom:5px;
+    z-index:999;
+    color:white;
+}

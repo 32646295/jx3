@@ -1,0 +1,112 @@
+[
+  {
+    "zone_id": "z01",
+    "zone_name": "电信一区",
+    "zone_type": "telecom",
+    "servers": [
+      {
+        "server_id": "gate0126",
+        "server_name": "蝶恋花"
+      },
+      {
+        "server_id": "gate0115",
+        "server_name": "龙争虎斗"
+      },
+      {
+        "server_id": "gate0101",
+        "server_name": "长安城"
+      }
+    ]
+  },
+  {
+    "zone_id": "z05",
+    "zone_name": "电信五区",
+    "zone_type": "telecom",
+    "servers": [
+      {
+        "server_id": "gate0519",
+        "server_name": "幽月轮"
+      },
+      {
+        "server_id": "gate0515",
+        "server_name": "斗转星移"
+      },
+      {
+        "server_id": "gate0524",
+        "server_name": "剑胆琴心"
+      },
+      {
+        "server_id": "gate0514",
+        "server_name": "乾坤一掷"
+      },
+      {
+        "server_id": "gate0505",
+        "server_name": "唯我独尊"
+      },
+      {
+        "server_id": "gate0502",
+        "server_name": "梦江南"
+      }
+    ]
+  },
+  {
+    "zone_id": "z08",
+    "zone_name": "电信八区",
+    "zone_type": "telecom",
+    "servers": [
+      {
+        "server_id": "gate0807",
+        "server_name": "绝代天骄"
+      }
+    ]
+  },
+  {
+    "zone_id": "z21",
+    "zone_name": "双线一区",
+    "zone_type": "netcom",
+    "servers": [
+      {
+        "server_id": "gate2107",
+        "server_name": "天鹅坪"
+      },
+      {
+        "server_id": "gate2106",
+        "server_name": "破阵子"
+      }
+    ]
+  },
+  {
+    "zone_id": "z22",
+    "zone_name": "双线二区",
+    "zone_type": "netcom",
+    "servers": [
+      {
+        "server_id": "gate2204",
+        "server_name": "飞龙在天"
+      }
+    ]
+  },
+  {
+    "zone_id": "z24",
+    "zone_name": "双线四区",
+    "zone_type": "netcom",
+    "servers": [
+      {
+        "server_id": "gate2402",
+        "server_name": "青梅煮酒"
+      },
+      {
+        "server_id": "gate2407",
+        "server_name": "凌雪藏锋"
+      },
+      {
+        "server_id": "gate2409",
+        "server_name": "风月同天"
+      },
+      {
+        "server_id": "gate2410",
+        "server_name": "江湖故人"
+      }
+    ]
+  }
+]

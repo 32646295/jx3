@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html style="overflow: hidden;">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>英雄范阳夜变安小逢打Call练习器</title>
+	<meta charset="utf-8" />
+    <link href="StyleSheet.css" rel="stylesheet" />
+    <link href="https://cdn.bootcss.com/layer/2.3/skin/layer.css" rel="stylesheet">
+    <script type="text/javascript">document.write(unescape("%3Cspan id='cnzz_stat_icon_1279266027'%3E%3C/span%3E%3Cscript src='https://s4.cnzz.com/z_stat.php%3Fid%3D1279266027' type='text/javascript'%3E%3C/script%3E"));</script>
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/layer/2.3/layer.js"></script>
+    <script src="libgif.js"></script>
+    <script src="rubbable.js"></script>
+    <script src="scripts.js"></script>
+</head>
+<body>
+    <div class="toolbar">
+        <button id="btnPratise">练习模式</button>
+        <button id="btnTeam">团长模式</button>
+        <button id="btnChange">换一个</button>
+    </div>
+    
+    <canvas id="bg" style="position:absolute; top:0px;left:0px;z-index:1"></canvas>
+    <canvas id="yourTurn" style="position:absolute;display:none;  top:892px;left:820px;z-index:3"></canvas>
+
+    <div class="say" style="position:absolute; top:682px;left:687px;z-index:2;display:none;" id="say0_container">
+        <img id="say0" src="" rel:animated_src="imgs/嘿.gif" width="551" height="143" />
+    </div>
+    <div class="say" style="position:absolute; top:682px;left:687px;z-index:2;display:none;" id="say1_container">
+        <img id="say1" src="" rel:animated_src="imgs/嗨.gif" width="551" height="143" />
+    </div>
+    <div class="say" style="position:absolute; top:682px;left:687px;z-index:2;display:none;" id="say2_container">
+        <img id="say2" src="" rel:animated_src="imgs/唔.gif" width="551" height="143" />
+    </div>
+    <div class="say" style="position:absolute; top:682px;left:687px;z-index:2;display:none;" id="say3_container">
+        <img id="say3" src="" rel:animated_src="imgs/呼.gif" width="551" height="143" />
+    </div>
+    <div class="progress" style="position:absolute; top:661px;left:709px;z-index:2;display:none;" id="progress_container">
+        <img id="progress" src="" rel:animated_src="imgs/progress.gif" width="551" height="143" />
+    </div>
+    <span class="ready"></span>
+    <span class="time"></span>
+</body>
+</html>
