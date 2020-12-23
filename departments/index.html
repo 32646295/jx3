@@ -4,6 +4,49 @@
     <script type="text/javascript" src="jquery.min.js"></script>
     <script type="text/javascript" src="layer.min.js"></script>
     <link type="text/css" rel="stylesheet" href="layer.min.css" />
+    <style>
+        body {
+            font-size:45px;
+        }
+        input {
+            width: 30px;
+            height: 30px;
+        }
+        .content {
+            text-align:center;
+            width:920px;
+            text-align:left;
+        }
+        .img img {
+            width: 128px;
+            height: 128px;
+            margin-left:340px;
+        }
+
+        .question {
+            padding-top:10px;
+            padding-bottom: 20px;
+            
+        }
+
+            .question .title {
+                font-weight: bolder;
+            }
+
+            .question .result {
+                display: inline-block;
+            }
+
+            .question .result label{
+                padding-left:5px;
+                padding-right:15px;
+            }
+
+            .question .true {
+                color: red;
+                font-weight: bolder;
+            }
+    </style>
     <script type="text/javascript">
         
         function randomNum(minNum, maxNum) {
@@ -22,7 +65,7 @@
         function take(data, number, include){
             var arr = [];
             var result = [];
-            result.push(data[include]);
+            arr.push(include);
             while(arr.length < number){
                 var nA = randomNum(0, data.length - 1);
                 if(arr.indexOf(nA) >= 0) continue;
@@ -96,17 +139,19 @@
                 if (department != null && department != "" && category != null && category != "" && type != null && type != "") {
                     if (department == department_true && category == category_true && type == type_true)
                     {
-                        alert("yes");
-                        next();
+                        setTimeout(function () {
+                            alert("不错不错，答对了！");
+                            next();
+                        }, 20);
                     }
                     else {
                         $('input[name=deps][answer=true]').next().addClass("true");
                         $('input[name=cats][answer=true]').next().addClass("true");
-                        $('input[name=typs][answer=true]').next().addClass("true");
-                        alert("no");
+                        $('input[name=typs][answer=true]').next().addClass("true");                        
                         setTimeout(function () {
+                            alert("你是猪吗！？这都能认错！！");
                             next();
-                        }, 5000);
+                        }, 20);
                     }
                 }
             });
@@ -124,29 +169,10 @@
             initResult(data, question);
         }
     </script>
-    <style>
-        .img img {
-            width:96px;
-            height:96px;
-        }
-        .question {
-            padding-bottom:20px;
-        }
-            .question .title {
-                font-weight:bolder;
-            }
-            .question .result {
-                display:inline-block;
-            }
-            .question .true {
-                color:red;
-                font-weight:bolder;
-            }
-    </style>
 </head>
 
 <body>
-    <div>
+    <div class="content">
         <div class="img">
             <img src="" />
         </div>
@@ -154,15 +180,15 @@
         <div>
             <form name="form" id="form1">
                 <div class="question department">
-                    <span class="title">上图是哪个门派：</span>
+                    <span class="title">上图门派：</span>
                     <div class="result"></div>
                 </div>
                 <div class="question type">
-                    <span class="title">上图是工作类型是：</span>
+                    <span class="title">上图职业：</span>
                     <div class="result"></div>
                 </div>
                 <div class="question category">
-                    <span class="title">上图是：</span>
+                    <span class="title">上图类型：</span>
                     <div class="result"></div>
                 </div>
                 <!--<div class="details">
